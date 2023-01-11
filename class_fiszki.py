@@ -2,6 +2,8 @@ from random import randint
 database = 'cards.txt'
 words_for_repeat = 'words_for_repeat.txt'
 
+#WHEN I FINISH WORK, I WILL TRANSLATE ALL COMMENTS FROM RUSSIAN TO ENGLISH
+
 class Card:
     def __init__(self, word: str, translate: str, level: int):
         """Конструктор принимает само слово, его перевод и уровень сложности"""
