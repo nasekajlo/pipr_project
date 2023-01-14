@@ -1,11 +1,12 @@
 from random import randint
-database = 'cards.txt'
+database = 'words_for_repeat.txt'
 words_for_repeat = 'words_for_repeat.txt'
+repeat_time = 8 #начальное значение теста, в котором попадется слово для повторения
 
 #WHEN I FINISH WORK, I WILL TRANSLATE ALL COMMENTS FROM RUSSIAN TO ENGLISH
 
 class Card:
-    def __init__(self, word: str, translate: str, level: int):
+    def __init__(self, word: str, translate: str, level: int, time_repeat=repeat_time):
         """Конструктор принимает само слово, его перевод и уровень сложности"""
         if word == '':
             raise ValueError
@@ -14,6 +15,7 @@ class Card:
         self._word = word
         self._translate = translate
         self._level = level
+        self._repeat = time_repeat
     
     def __str__(self):
         return self._word
@@ -34,22 +36,40 @@ class Round:
            Если время соблюдено, то засчитываются правильные сопоставление
            В итоге возвращается список неправильных слов"""
         bad_words = []
-        #good_words = []
+        # good_words = []
         if time > test_time:
             bad_words = sorted_cards
             return 
         for pair_card in zip(sorted_cards, sorted_translate):
             if pair_card[0]._translate != pair_card[1]._word:
                 bad_words.append(pair_card[0])
-           # else:
-                #good_words.append(pair_card[0])
+            # else:
+            #     good_words.append(pair_card[0])
         return bad_words
 
-    def bad_words_for_repeat(self, bad_words, file = words_for_repeat):
-        """Записываем неправильные слова в файл для особого повторения"""
+    def words_for_repeat(self, words, file=words_for_repeat):
+        """Записываем слова, которые были в тесте, в файл для повторения"""
+        all_lines = []
+        with open(file, 'r+') as f:
+            all_lines = f.readlines()
+            f.seek(0)
+            f.truncate()
+        all_words = []
+        for line in all_lines:
+            word, translate, level, time_repeat = line.split('-')
+            card = Card(word, translate, level, time_repeat)
+            all_words.append(card)
+        for card in all_words:
+            if card in words:
+                card._repeat = 2*card._repeat
+            else:
+                card._repeat = card._repeat/2
+        all_words.sort(key=lambda x: x._repeat)
         with open(file, 'w') as f:
-            for card in bad_words:
-                f.write(f'{card._word}-{card._translate}-{card._level}\n')
+            for card in all_words:
+                f.write(f'{card._word}-{card._translate}-{card._level}-{card._repeat}\n')
+
+        
 
     def add_new_card(self, word, translate):
         """DELETE AT THE END"""
@@ -60,7 +80,7 @@ class Round:
         """Експорт принимает фишку, которую нужно экспортировать
             и файл, в который нужно ее сохранить(файл определен как константа"""
         with open(file, 'w') as f:
-            f.write(f'{card._word}-{card._translate}-{card._level}/n')
+            f.write(f'{card._word}-{card._translate}-{card._level}-{card._repeat}\n')
 
     def import_card(self, cards, file=database):
         """Импорт принимает список разыгрываемых карточек и файл, их которого импортируется фишка.
@@ -73,13 +93,13 @@ class Round:
             line_count = sum(1 for line in f)
             random_line = randint(1, line_count)
             pair = f.readline(random_line)
-            word_trans_level = pair.split('-')
-            card = Card(word_trans_level[0], word_trans_level[1], word_trans_level[2])
+            word, translate, level, repeat = pair.split('-')
+            card = Card(word, translate, level, repeat)
             while card in cards:
                 random_line = randint(1, line_count)
                 pair = f.readline(random_line)
-                word_trans_level = pair.split('-')
-                card = Card(word_trans_level[0], word_trans_level[1], word_trans_level[2])
+                word, translate, level, repeat = pair.split('-')
+                card = Card(word, translate, level, repeat)
             cards.append(card)
 
     def define_new_card(self, word, translate, level: int, file = database):
@@ -92,12 +112,12 @@ class Round:
         all_words = []
         with open(file, 'w') as f:
             all_words = f.readlines()
-            word_translate_level = f'{word}-{translate}-{level}'
-            for word in all_words:
-                iterate_word, iterate_translate, iterate_level = word.split('-')
+            card = f'{word}-{translate}-{level}-{repeat_time}'
+            for line in all_words:
+                iterate_word, iterate_translate, iterate_level = line.split('-')
                 if (iterate_word == word):
-                    return
-            f.write(word_translate_level)
+                    raise ValueError
+            f.write(f'{card}\n')
 
     def delete_card(self, card: Card, file = database): 
         """На вход принимаются сама фишка и файл, из которого будет удалять слово
@@ -108,12 +128,16 @@ class Round:
         all_words = []
         with open(file, 'r+') as f:
             all_words = f.readlines()
-            word_translate_level = f'{card._word}-{card._translate}-{card._level}'
+            word = f'{card._word}-{card._translate}-{card._level}-{card._repeat}'
             f.seek(0)
             f.truncate()
-            for word in all_words:
-                if word.strip("\n") != word_translate_level:
+            flag = 0
+            for line in all_words:
+                if line.strip("\n") != word:
                     f.write(word+"\n")
+                    flag = 1
+            if flag == 0:
+                raise ValueError
     
     def choose_random_cards(self, number_of_cards: int, file = database):
         test_cards = []
@@ -121,7 +145,8 @@ class Round:
             all_words = f.readlines()
         for i in range(number_of_cards):
 
-    def play_round(self, file = database):
+
+    def play_round(self, number_of_cards, file = database):
         """В процессе разработки (сначала дописать генерацию карточек и их запись"""
         all_words = []
         with open(file, 'r+') as f:
