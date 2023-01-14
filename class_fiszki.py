@@ -22,13 +22,13 @@ class Card:
 
 #функция для записи ошибочных слов в отдельных файл для повторения
 class Round:
-    def __init__(self, cards, time):
+    def __init__(self, number_cards, time):
         """ NOT FINISHED!
             Конструктор раунда принимает список фишек и время выполнения теста"""
         self._time = time
-        self._cards = cards
+        self._number_cards = number_cards
     
-    def check_result(self, sorted_cards, sorted_translate, time, test_time):
+    def check_result(self, sorted_cards, sorted_translate, time):
         """Два критерия по оценке теста:
             1. Время выполнения меньше времени, отведенного на тест
             2. Слова сопоставлены правильно
@@ -37,7 +37,7 @@ class Round:
            В итоге возвращается список неправильных слов"""
         bad_words = []
         # good_words = []
-        if time > test_time:
+        if time > self._time:
             bad_words = sorted_cards
             return 
         for pair_card in zip(sorted_cards, sorted_translate):
@@ -61,9 +61,9 @@ class Round:
             all_words.append(card)
         for card in all_words:
             if card in words:
-                card._repeat = 2*card._repeat
+                card._repeat = 2 * card._repeat
             else:
-                card._repeat = card._repeat/2
+                card._repeat = card._repeat / 2
         all_words.sort(key=lambda x: x._repeat)
         with open(file, 'w') as f:
             for card in all_words:
@@ -139,22 +139,26 @@ class Round:
             if flag == 0:
                 raise ValueError
     
-    def choose_random_cards(self, number_of_cards: int, file = database):
+    def choose_random_cards(self, file = database):
         test_cards = []
         with open(file, 'r+') as f:
             all_words = f.readlines()
-        for i in range(number_of_cards):
+        repeat_words = []
+        for line in all_words:
+            word, translate, level, repeat = line.split('-')
+            if repeat != 2:
+                break
+            else:
+                repeat_words.append(line)
+        test_words = []
+        for i in range(self._number_cards):
+            word, translate, level, repeat = repeat_words[i].split('-')
+            card = Card(word, translate, level, repeat)
+            test_words.append(card)
+        return test_words
 
-
-    def play_round(self, number_of_cards, file = database):
+    def play_round(self, file = database):
         """В процессе разработки (сначала дописать генерацию карточек и их запись"""
-        all_words = []
-        with open(file, 'r+') as f:
-            all_words = f.readlines()
-        with open('round.txt', 'w') as f:
-            for i in range(0, number_of_cards-1):
-                random_line = randint(0, len(all_words)-1)
-                f.write(all_words[random_line])
-                all_words.pop()
+        
 
 
