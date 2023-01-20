@@ -1,6 +1,9 @@
 from class_fiszki import *
 import pytest
-database = 'words_for_repeat.txt'
+database = 'word_for_repeat_test.txt'
+database1 = 'words_import.txt'
+database2 = 'words_delete.txt'
+database3 = 'word_for_repeat_test.txt'
 
 def test_init_card():
     card = Card("cześć", "hello", 1)
@@ -48,7 +51,7 @@ def test_import_card():
     card2 = Card("siema", "bye", 1)
     cards = [card1, card2]
     round = Round(5, 60)
-    new_cards = round.import_card(cards)
+    new_cards = round.import_card(cards, database1)
     expected_card = Card('truskawka', 'strawberry', 3)
     assert new_cards[2].word == 'truskawka'
 
@@ -91,19 +94,19 @@ def test_define_card_empty_trans():
 def test_delete_card():
     card2 = Card("siema", "bye", 1)
     round = Round(5, 60)
-    new_words = round.delete_card(card2)
-    assert len(new_words) == 3
+    new_words = round.delete_card(card2, database2)
+    assert len(new_words) == 11
 
 def test_delete_not_existing_card():
     with pytest.raises(ValueError):
         card = Card("dom", "house", 1)
         round = Round(5, 60)
-        new_words = round.delete_card(card)
-        assert len(new_words) == 4
+        new_words = round.delete_card(card, database2)
+        assert len(new_words) == 11
 
 def test_random_cards():
     round = Round(6, 60)
-    random_words = round.choose_random_cards()
+    random_words = round.choose_random_cards(database3)
     assert random_words[0].word == 'truskawka'
     assert random_words[4].word == 'szczotka'
     assert random_words[5].word == "szkola"
@@ -113,10 +116,10 @@ def test_check_result_true():
     card2 = Card("siema", "bye", 1)
     card3 = Card("malpa", "monkey", 3)
     card4 = Card("szczotka", "hairbrush", 2)
-    tr_card1 = Card("apple", "jablko", 2)
-    tr_card2 = Card("bye", "siema", 1)
-    tr_card3 = Card("monkey", "malpa", 3)
-    tr_card4 = Card("hairbrush", "szczotka", 2)
+    tr_card1 = "apple"
+    tr_card2 = "bye"
+    tr_card3 = "monkey"
+    tr_card4 = "hairbrush"
     sorted_cards = [card1, card2, card3, card4]
     sorted_translate = [tr_card1, tr_card2, tr_card3, tr_card4]
     round = Round(4, 60)
@@ -128,10 +131,10 @@ def test_check_result_false():
     card2 = Card("siema", "bye", 1)
     card3 = Card("malpa", "monkey", 3)
     card4 = Card("szczotka", "hairbrush", 2)
-    tr_card1 = Card("apple", "jablko", 2)
-    tr_card2 = Card("bye", "siema", 1)
-    tr_card3 = Card("monkey", "malpa", 3)
-    tr_card4 = Card("hairbrush", "szczotka", 2)
+    tr_card1 = "apple"
+    tr_card2 = "bye"
+    tr_card3 = "monkey"
+    tr_card4 = "hairbrush"
     sorted_cards = [card1, card2, card3, card4]
     sorted_translate = [tr_card2, tr_card1, tr_card3, tr_card4]
     round = Round(4, 60)
@@ -143,10 +146,10 @@ def test_check_result_more_time():
     card2 = Card("siema", "bye", 1)
     card3 = Card("malpa", "monkey", 3)
     card4 = Card("szczotka", "hairbrush", 2)
-    tr_card1 = Card("apple", "jablko", 2)
-    tr_card2 = Card("bye", "siema", 1)
-    tr_card3 = Card("monkey", "malpa", 3)
-    tr_card4 = Card("hairbrush", "szczotka", 2)
+    tr_card1 = "apple"
+    tr_card2 = "bye"
+    tr_card3 = "monkey"
+    tr_card4 = "hairbrush"
     sorted_cards = [card1, card2, card3, card4]
     sorted_translate = [tr_card1, tr_card2, tr_card3, tr_card4]
     round = Round(4, 60)
@@ -160,8 +163,9 @@ def test_words_for_repeat():
     card4 = Card("szczotka", "hairbrush", 2, 1)
     cards = [card1, card2, card3, card4]
     round = Round(4, 60)
-    update_words = round.words_for_repeat(cards)
+    update_words = round.words_for_repeat(cards, database3)
     assert update_words[0].repeat == 32
     assert update_words[1].repeat == 16
     assert update_words[2].repeat == 1
+    assert update_words[8].repeat == 4
     assert update_words[11].repeat == 16

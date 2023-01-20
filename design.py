@@ -12,27 +12,18 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 753)
-        font = QtGui.QFont()
-        font.setFamily("Century Gothic")
-        MainWindow.setFont(font)
-        MainWindow.setStyleSheet("")
+        MainWindow.resize(1006, 820)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(0, 0, 801, 761))
-        self.frame.setStyleSheet("QFrame{\n"
-"    font: 50px \"Century Gothic\";\n"
-"    font-weight:bold;\n"
-"    \n"
-"    color: rgb(69, 69, 69);\n"
-"    background-color: rgb(213, 199, 188);\n"
-"}")
-        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame.setObjectName("frame")
-        self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(160, 270, 671, 81))
+        self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
+        self.stackedWidget.setGeometry(QtCore.QRect(-1, -1, 1011, 841))
+        self.stackedWidget.setMinimumSize(QtCore.QSize(0, 721))
+        self.stackedWidget.setStyleSheet("background-color: rgb(67, 170, 139);")
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.label = QtWidgets.QLabel(self.page)
+        self.label.setGeometry(QtCore.QRect(40, 250, 941, 151))
         font = QtGui.QFont()
         font.setFamily("Century Gothic")
         font.setPointSize(-1)
@@ -40,61 +31,274 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.label.setFont(font)
-        self.label.setStyleSheet("font-weight:bold;\n"
-"color: rgb(69, 69, 69);\n"
-"font-size: 40px;\n"
-"")
+        self.label.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
+        self.label.setStyleSheet("color:rgb(252, 250, 250);\n"
+"font: 60px \"Century Gothic\";\n"
+"font-weight:bold;")
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.frame)
-        self.label_2.setGeometry(QtCore.QRect(50, 230, 100, 100))
-        self.label_2.setStyleSheet("")
-        self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap(":/2/earth-globe.png"))
-        self.label_2.setScaledContents(True)
-        self.label_2.setWordWrap(False)
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.frame)
-        self.label_3.setGeometry(QtCore.QRect(-6, 425, 811, 331))
-        self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("5cb9976d9ad46d73b47afb1e849fc310.jpg"))
-        self.label_3.setScaledContents(True)
-        self.label_3.setObjectName("label_3")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setGeometry(QtCore.QRect(260, 390, 281, 121))
-        self.pushButton.setStyleSheet("QPushButton{\n"
-"background-color: rgb(147, 183, 190);\n"
-"border-radius: 20px;\n"
+        self.buttonStart = QtWidgets.QPushButton(self.page)
+        self.buttonStart.setGeometry(QtCore.QRect(380, 420, 221, 91))
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonStart.setFont(font)
+        self.buttonStart.setStyleSheet("QPushButton{\n"
+"background-color: rgb(252, 250, 250);\n"
+"color:rgb(37, 68, 65);\n"
 "font-weight:bold;\n"
-"font-size:30px;\n"
-"font-family:Century Gothic;\n"
-"color:rgb(69, 69, 69);\n"
+"font-size:20px;\n"
+"border-radius:10px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"background-color: rgbrgb(109, 136, 141);\n"
-"color:rgb(226, 226, 226);\n"
+"background-color: rgb(112, 86, 109);\n"
+"color:rgb(252, 250, 250);\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(30, 290, 16, 16))
-        self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap(":/newPrefix/earth-globe.png"))
+        self.buttonStart.setObjectName("buttonStart")
+        self.stackedWidget.addWidget(self.page)
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
+        self.time_test = QtWidgets.QLineEdit(self.page_2)
+        self.time_test.setGeometry(QtCore.QRect(650, 200, 121, 101))
+        self.time_test.setStyleSheet("background-color: rgb(252, 250, 250);\n"
+"font-size: 35px;\n"
+"border-radius:10px;")
+        self.time_test.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.time_test.setObjectName("time_test")
+        self.label_2 = QtWidgets.QLabel(self.page_2)
+        self.label_2.setGeometry(QtCore.QRect(210, 200, 391, 101))
+        self.label_2.setStyleSheet("color:rgb(252, 250, 250);\n"
+"font-size:30px;\n"
+"font-family: Century Gothic;\n"
+"font-weight:bold;\n"
+"background-color: none;")
+        self.label_2.setWordWrap(True)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(self.page_2)
+        self.label_3.setGeometry(QtCore.QRect(110, 70, 791, 661))
+        self.label_3.setStyleSheet("background-color: rgb(37, 68, 65);\n"
+"border-radius: 10px;")
+        self.label_3.setText("")
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.page_2)
+        self.label_4.setGeometry(QtCore.QRect(210, 430, 391, 101))
+        self.label_4.setStyleSheet("color:rgb(252, 250, 250);\n"
+"font-size:30px;\n"
+"font-family: Century Gothic;\n"
+"font-weight:bold;\n"
+"background-color: none;")
+        self.label_4.setWordWrap(True)
         self.label_4.setObjectName("label_4")
+        self.card_number = QtWidgets.QLineEdit(self.page_2)
+        self.card_number.setGeometry(QtCore.QRect(650, 440, 121, 101))
+        self.card_number.setStyleSheet("background-color: rgb(252, 250, 250);\n"
+"font-size: 35px;\n"
+"border-radius:10px;")
+        self.card_number.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.card_number.setObjectName("card_number")
+        self.label_5 = QtWidgets.QLabel(self.page_2)
+        self.label_5.setGeometry(QtCore.QRect(140, 80, 741, 101))
+        self.label_5.setStyleSheet("color:rgb(252, 250, 250);\n"
+"font-size:45px;\n"
+"font-family: Century Gothic;\n"
+"font-weight:bold;\n"
+"background-color: none;")
+        self.label_5.setWordWrap(True)
+        self.label_5.setObjectName("label_5")
+        self.btOk = QtWidgets.QPushButton(self.page_2)
+        self.btOk.setGeometry(QtCore.QRect(430, 600, 161, 61))
+        self.btOk.setStyleSheet("QPushButton{\n"
+"background-color: rgb(255, 111, 89);\n"
+"font: 20pt \"Century Gothic\";\n"
+"font-weight: bold;\n"
+"color:rgb(252, 250, 250);\n"
+"border-radius:10px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color: rgb(150, 51, 51);\n"
+"}")
+        self.btOk.setObjectName("btOk")
+        self.label_3.raise_()
+        self.time_test.raise_()
+        self.label_2.raise_()
+        self.label_4.raise_()
+        self.card_number.raise_()
+        self.label_5.raise_()
+        self.btOk.raise_()
+        self.stackedWidget.addWidget(self.page_2)
+        self.page_3 = QtWidgets.QWidget()
+        self.page_3.setObjectName("page_3")
+        self.word_1 = QtWidgets.QPushButton(self.page_3)
+        self.word_1.setGeometry(QtCore.QRect(650, 30, 93, 28))
+        self.word_1.setObjectName("word_1")
+        self.translate_1 = QtWidgets.QPushButton(self.page_3)
+        self.translate_1.setGeometry(QtCore.QRect(850, 460, 93, 28))
+        self.translate_1.setObjectName("translate_1")
+        self.word_6 = QtWidgets.QPushButton(self.page_3)
+        self.word_6.setGeometry(QtCore.QRect(650, 100, 93, 28))
+        self.word_6.setObjectName("word_6")
+        self.translate_5 = QtWidgets.QPushButton(self.page_3)
+        self.translate_5.setGeometry(QtCore.QRect(850, 250, 93, 28))
+        self.translate_5.setObjectName("translate_5")
+        self.word_7 = QtWidgets.QPushButton(self.page_3)
+        self.word_7.setGeometry(QtCore.QRect(650, 250, 93, 28))
+        self.word_7.setObjectName("word_7")
+        self.translate_8 = QtWidgets.QPushButton(self.page_3)
+        self.translate_8.setGeometry(QtCore.QRect(850, 600, 93, 28))
+        self.translate_8.setObjectName("translate_8")
+        self.word_8 = QtWidgets.QPushButton(self.page_3)
+        self.word_8.setGeometry(QtCore.QRect(650, 170, 93, 28))
+        self.word_8.setObjectName("word_8")
+        self.translate_9 = QtWidgets.QPushButton(self.page_3)
+        self.translate_9.setGeometry(QtCore.QRect(850, 100, 93, 28))
+        self.translate_9.setObjectName("translate_9")
+        self.word_9 = QtWidgets.QPushButton(self.page_3)
+        self.word_9.setGeometry(QtCore.QRect(650, 320, 93, 28))
+        self.word_9.setObjectName("word_9")
+        self.translate_4 = QtWidgets.QPushButton(self.page_3)
+        self.translate_4.setGeometry(QtCore.QRect(850, 320, 93, 28))
+        self.translate_4.setObjectName("translate_4")
+        self.word_2 = QtWidgets.QPushButton(self.page_3)
+        self.word_2.setGeometry(QtCore.QRect(650, 390, 93, 28))
+        self.word_2.setObjectName("word_2")
+        self.translate_2 = QtWidgets.QPushButton(self.page_3)
+        self.translate_2.setGeometry(QtCore.QRect(850, 30, 93, 28))
+        self.translate_2.setObjectName("translate_2")
+        self.word_4 = QtWidgets.QPushButton(self.page_3)
+        self.word_4.setGeometry(QtCore.QRect(650, 670, 93, 28))
+        self.word_4.setObjectName("word_4")
+        self.translate_7 = QtWidgets.QPushButton(self.page_3)
+        self.translate_7.setGeometry(QtCore.QRect(860, 390, 93, 28))
+        self.translate_7.setObjectName("translate_7")
+        self.word_5 = QtWidgets.QPushButton(self.page_3)
+        self.word_5.setGeometry(QtCore.QRect(650, 460, 93, 28))
+        self.word_5.setObjectName("word_5")
+        self.translate_6 = QtWidgets.QPushButton(self.page_3)
+        self.translate_6.setGeometry(QtCore.QRect(850, 670, 93, 28))
+        self.translate_6.setObjectName("translate_6")
+        self.word_10 = QtWidgets.QPushButton(self.page_3)
+        self.word_10.setGeometry(QtCore.QRect(650, 600, 93, 28))
+        self.word_10.setObjectName("word_10")
+        self.translate_3 = QtWidgets.QPushButton(self.page_3)
+        self.translate_3.setGeometry(QtCore.QRect(850, 170, 93, 28))
+        self.translate_3.setObjectName("translate_3")
+        self.word_3 = QtWidgets.QPushButton(self.page_3)
+        self.word_3.setGeometry(QtCore.QRect(650, 530, 93, 28))
+        self.word_3.setObjectName("word_3")
+        self.translate_10 = QtWidgets.QPushButton(self.page_3)
+        self.translate_10.setGeometry(QtCore.QRect(850, 530, 93, 28))
+        self.translate_10.setObjectName("translate_10")
+        self.check = QtWidgets.QPushButton(self.page_3)
+        self.check.setGeometry(QtCore.QRect(640, 350, 321, 111))
+        self.check.setCheckable(False)
+        self.check.setObjectName("check")
+        self.import_card = QtWidgets.QPushButton(self.page_3)
+        self.import_card.setGeometry(QtCore.QRect(270, 710, 201, 41))
+        self.import_card.setStyleSheet("QPushButton{\n"
+"background-color: rgb(252, 250, 250);\n"
+"color:rgb(37, 68, 65);\n"
+"font-weight:bold;\n"
+"font-size:20px;\n"
+"border-radius:10px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color: rgb(112, 86, 109);\n"
+"color:rgb(252, 250, 250);\n"
+"}")
+        self.import_card.setObjectName("import_card")
+        self.define_card = QtWidgets.QPushButton(self.page_3)
+        self.define_card.setGeometry(QtCore.QRect(20, 710, 201, 41))
+        self.define_card.setStyleSheet("QPushButton{\n"
+"background-color: rgb(252, 250, 250);\n"
+"color:rgb(37, 68, 65);\n"
+"font-weight:bold;\n"
+"font-size:20px;\n"
+"border-radius:10px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color: rgb(112, 86, 109);\n"
+"color:rgb(252, 250, 250);\n"
+"}")
+        self.define_card.setObjectName("define_card")
+        self.new_word = QtWidgets.QLineEdit(self.page_3)
+        self.new_word.setGeometry(QtCore.QRect(20, 611, 201, 41))
+        self.new_word.setStyleSheet("background-color: rgb(252, 250, 250);\n"
+"font-size: 20px;\n"
+"border-radius:10px;")
+        self.new_word.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.new_word.setObjectName("new_word")
+        self.new_translate = QtWidgets.QLineEdit(self.page_3)
+        self.new_translate.setGeometry(QtCore.QRect(20, 661, 201, 41))
+        self.new_translate.setStyleSheet("background-color: rgb(252, 250, 250);\n"
+"font-size: 20px;\n"
+"border-radius:10px;")
+        self.new_translate.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.new_translate.setObjectName("new_translate")
+        self.check.raise_()
+        self.word_1.raise_()
+        self.translate_1.raise_()
+        self.word_6.raise_()
+        self.translate_5.raise_()
+        self.word_7.raise_()
+        self.translate_8.raise_()
+        self.word_8.raise_()
+        self.translate_9.raise_()
+        self.word_9.raise_()
+        self.translate_4.raise_()
+        self.word_2.raise_()
+        self.translate_2.raise_()
+        self.word_4.raise_()
+        self.translate_7.raise_()
+        self.word_5.raise_()
+        self.translate_6.raise_()
+        self.word_10.raise_()
+        self.translate_3.raise_()
+        self.word_3.raise_()
+        self.translate_10.raise_()
+        self.import_card.raise_()
+        self.define_card.raise_()
+        self.new_word.raise_()
+        self.new_translate.raise_()
+        self.stackedWidget.addWidget(self.page_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "WordRelation!"))
-        self.label.setText(_translate("MainWindow", "WELCOME TO WORDRELATION!"))
-        self.pushButton.setText(_translate("MainWindow", "START"))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "WELCOME TO ENGLISH STUDYING"))
+        self.buttonStart.setText(_translate("MainWindow", "START"))
+        self.time_test.setPlaceholderText(_translate("MainWindow", "60"))
+        self.label_2.setText(_translate("MainWindow", "Determine the test time (max is 90 sekonds)"))
+        self.label_4.setText(_translate("MainWindow", "Determine the number of cards (max is 10)"))
+        self.card_number.setPlaceholderText(_translate("MainWindow", "5"))
+        self.label_5.setText(_translate("MainWindow", "Set time test and number of cards"))
+        self.btOk.setText(_translate("MainWindow", "OK"))
+        self.word_1.setText(_translate("MainWindow", "PushButton"))
+        self.translate_1.setText(_translate("MainWindow", "PushButton"))
+        self.word_6.setText(_translate("MainWindow", "PushButton"))
+        self.translate_5.setText(_translate("MainWindow", "PushButton"))
+        self.word_7.setText(_translate("MainWindow", "PushButton"))
+        self.translate_8.setText(_translate("MainWindow", "PushButton"))
+        self.word_8.setText(_translate("MainWindow", "PushButton"))
+        self.translate_9.setText(_translate("MainWindow", "PushButton"))
+        self.word_9.setText(_translate("MainWindow", "PushButton"))
+        self.translate_4.setText(_translate("MainWindow", "PushButton"))
+        self.word_2.setText(_translate("MainWindow", "PushButton"))
+        self.translate_2.setText(_translate("MainWindow", "PushButton"))
+        self.word_4.setText(_translate("MainWindow", "PushButton"))
+        self.translate_7.setText(_translate("MainWindow", "PushButton"))
+        self.word_5.setText(_translate("MainWindow", "PushButton"))
+        self.translate_6.setText(_translate("MainWindow", "PushButton"))
+        self.word_10.setText(_translate("MainWindow", "PushButton"))
+        self.translate_3.setText(_translate("MainWindow", "PushButton"))
+        self.word_3.setText(_translate("MainWindow", "PushButton"))
+        self.translate_10.setText(_translate("MainWindow", "PushButton"))
+        self.check.setText(_translate("MainWindow", "PushButton"))
+        self.import_card.setText(_translate("MainWindow", "Import new card"))
+        self.define_card.setText(_translate("MainWindow", "Export new card"))
+        self.new_word.setPlaceholderText(_translate("MainWindow", "New word"))
+        self.new_translate.setPlaceholderText(_translate("MainWindow", "New translate"))

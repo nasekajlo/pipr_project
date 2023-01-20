@@ -1,13 +1,13 @@
 from random import randint
 database = 'words_for_repeat.txt'
-words_for_repeat = 'words_for_repeat.txt'
 repeat_time = 8 #начальное значение теста, в котором попадется слово для повторения
 
 #WHEN I FINISH WORK, I WILL TRANSLATE ALL COMMENTS FROM RUSSIAN TO ENGLISH
 
 class Card:
+    """Constructor, 4 properties and __eq__"""
     def __init__(self, word: str, translate: str, level: int, time_repeat=repeat_time):
-        """Конструктор принимает само слово, его перевод и уровень сложности"""
+        """Constructor accept word, its translate and the hard level"""
         if word == '':
             raise ValueError
         if translate == '':
@@ -37,24 +37,37 @@ class Card:
         return self._repeat
 
     def __eq__(self, __o: object) -> bool:
-        if (self._word==__o._word and self._translate==__o._translate and self._level == __o._level):
+        if (self._word==__o._word and self._translate==__o._translate and self._level == __o._level and self._repeat == __o._repeat):
             return True
 
-#функция для записи ошибочных слов в отдельных файл для повторения
+
 class Round:
+    """Functions:
+        1. check_result
+        2. """
     def __init__(self, number_cards, time):
         """ NOT FINISHED!
             Конструктор раунда принимает список фишек и время выполнения теста"""
         self._time = time
         self._number_cards = number_cards
+        self._cards = []
+ 
 
     @property
     def number_of_cards(self):
         return self._number_cards
 
+    @number_of_cards.setter
+    def number_of_cards(self, value):
+        self._number_cards = value
+
     @property
     def time(self):
         return self._time
+
+    @property
+    def cards(self):
+        return self._cards
     
     def check_result(self, sorted_cards, sorted_translate, time):
         """Два критерия по оценке теста:
@@ -68,35 +81,41 @@ class Round:
         if time > self._time:
             return sorted_cards
         for pair_card in zip(sorted_cards, sorted_translate):
-            if pair_card[0]._translate != pair_card[1]._word:
+            if pair_card[0]._translate != pair_card[1]:
                 bad_words.append(pair_card[0])
             # else:
             #     good_words.append(pair_card[0])
         return bad_words
 
-    def words_for_repeat(self, words, file=words_for_repeat):
+    def words_for_repeat(self, words, file=database):
         """Записываем слова, которые были в тесте, в файл для повторения"""
         all_lines = []
         with open(file, 'r+') as f:
             all_lines = f.readlines()
-            # f.seek(0)
-            # f.truncate()
+            f.seek(0)
+            f.truncate()
         all_words = []
         for line in all_lines:
             parts = line.split('-')
             word, translate, level, repeat = parts[0], parts[1], parts[2], parts[3].rstrip(),
             card = Card(word, translate, int(level), int(repeat))
             all_words.append(card)
+        flag = 0
         for card in all_words:
-            if card in words:
-                card._repeat = 4 * card._repeat
-            else:
+            for test_word in words:
+                if card._word == test_word._word:
+                    card._repeat = 4 * card._repeat
+                    flag = 1
+            if flag == 0:
                 if card._repeat == 1:
                     continue
-                card._repeat = card._repeat / 2
-        # all_words.sort(key=lambda x: x._repeat)
-        # with open(file, 'w') as f:
-        #     f.write("".join(all_words))
+                else:
+                    card._repeat = int(card._repeat / 2)
+        new_words = []
+        for card in all_words:
+            new_words.append(f'{card.word}-{card.translate}-{card.level}-{card.repeat}\n')
+        with open(file, 'w') as f:
+            f.write("".join(new_words))
         return all_words
 
         
@@ -209,6 +228,7 @@ class Round:
             word, translate, level, repeat = parts[0], parts[1], parts[2], parts[3].rstrip(), 
             card = Card(word, translate, level)
             test_words.append(card)
+            self._cards.append(card)
         return test_words
 
         

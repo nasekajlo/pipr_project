@@ -6,170 +6,662 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>753</height>
+    <width>1006</width>
+    <height>820</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Century Gothic</family>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>WordRelation!</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>761</height>
+      <x>-1</x>
+      <y>-1</y>
+      <width>1011</width>
+      <height>841</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>721</height>
+     </size>
+    </property>
     <property name="styleSheet">
-     <string notr="true">QFrame{
-	font: 50px &quot;Century Gothic&quot;;
-	font-weight:bold;
-	
-	color: rgb(69, 69, 69);
-	background-color: rgb(213, 199, 188);
-}</string>
+     <string notr="true">background-color: rgb(67, 170, 139);</string>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>270</y>
-       <width>671</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Century Gothic</family>
-       <pointsize>-1</pointsize>
-       <weight>75</weight>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font-weight:bold;
-color: rgb(69, 69, 69);
-font-size: 40px;
-</string>
-     </property>
-     <property name="text">
-      <string>WELCOME TO WORDRELATION!</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>230</y>
-       <width>100</width>
-       <height>100</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="example.qrc">:/newPrefix/earth-globe.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>-6</x>
-       <y>425</y>
-       <width>811</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="bg.qrc">:/1/5cb9976d9ad46d73b47afb1e849fc310.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>390</y>
-       <width>281</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-background-color: rgb(147, 183, 190);
-border-radius: 20px;
+    <widget class="QWidget" name="page">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>250</y>
+        <width>941</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(252, 250, 250);
+font: 60px &quot;Century Gothic&quot;;
+font-weight:bold;</string>
+      </property>
+      <property name="text">
+       <string>WELCOME TO ENGLISH STUDYING</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonStart">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>420</y>
+        <width>221</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: rgb(252, 250, 250);
+color:rgb(37, 68, 65);
 font-weight:bold;
-font-size:30px;
-font-family:Century Gothic;
-color:rgb(69, 69, 69);
+font-size:20px;
+border-radius:10px;
 }
 QPushButton:hover{
-background-color: rgbrgb(109, 136, 141);
-color:rgb(226, 226, 226);
+background-color: rgb(112, 86, 109);
+color:rgb(252, 250, 250);
 }</string>
-     </property>
-     <property name="text">
-      <string>START</string>
-     </property>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>290</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="example.qrc">:/newPrefix/earth-globe.png</pixmap>
-     </property>
+    <widget class="QWidget" name="page_2">
+     <widget class="QLineEdit" name="time_test">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>200</y>
+        <width>121</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(252, 250, 250);
+font-size: 35px;
+border-radius:10px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>60</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>200</y>
+        <width>391</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(252, 250, 250);
+font-size:30px;
+font-family: Century Gothic;
+font-weight:bold;
+background-color: none;</string>
+      </property>
+      <property name="text">
+       <string>Determine the test time (max is 90 sekonds)</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>70</y>
+        <width>791</width>
+        <height>661</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(37, 68, 65);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>430</y>
+        <width>391</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(252, 250, 250);
+font-size:30px;
+font-family: Century Gothic;
+font-weight:bold;
+background-color: none;</string>
+      </property>
+      <property name="text">
+       <string>Determine the number of cards (max is 10)</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="card_number">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>440</y>
+        <width>121</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(252, 250, 250);
+font-size: 35px;
+border-radius:10px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>80</y>
+        <width>741</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(252, 250, 250);
+font-size:45px;
+font-family: Century Gothic;
+font-weight:bold;
+background-color: none;</string>
+      </property>
+      <property name="text">
+       <string>Set time test and number of cards</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btOk">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>600</y>
+        <width>161</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: rgb(255, 111, 89);
+font: 20pt &quot;Century Gothic&quot;;
+font-weight: bold;
+color:rgb(252, 250, 250);
+border-radius:10px;
+}
+QPushButton:hover{
+background-color: rgb(150, 51, 51);
+}</string>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+     <zorder>label_3</zorder>
+     <zorder>time_test</zorder>
+     <zorder>label_2</zorder>
+     <zorder>label_4</zorder>
+     <zorder>card_number</zorder>
+     <zorder>label_5</zorder>
+     <zorder>btOk</zorder>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QPushButton" name="word_1">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>30</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_1">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>460</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_6">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>100</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_5">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>250</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_7">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>250</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_8">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>600</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_8">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>170</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_9">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>100</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_9">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>320</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_4">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>320</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_2">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>390</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_2">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>30</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_4">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>670</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_7">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>390</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_5">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>460</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_6">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>670</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_10">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>600</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_3">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>170</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="word_3">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>530</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="translate_10">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>530</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="check">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>350</y>
+        <width>321</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="import_card">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>710</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: rgb(252, 250, 250);
+color:rgb(37, 68, 65);
+font-weight:bold;
+font-size:20px;
+border-radius:10px;
+}
+QPushButton:hover{
+background-color: rgb(112, 86, 109);
+color:rgb(252, 250, 250);
+}</string>
+      </property>
+      <property name="text">
+       <string>Import new card</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="define_card">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>710</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: rgb(252, 250, 250);
+color:rgb(37, 68, 65);
+font-weight:bold;
+font-size:20px;
+border-radius:10px;
+}
+QPushButton:hover{
+background-color: rgb(112, 86, 109);
+color:rgb(252, 250, 250);
+}</string>
+      </property>
+      <property name="text">
+       <string>Export new card</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="new_word">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>611</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(252, 250, 250);
+font-size: 20px;
+border-radius:10px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>New word</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="new_translate">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>661</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(252, 250, 250);
+font-size: 20px;
+border-radius:10px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>New translate</string>
+      </property>
+     </widget>
+     <zorder>check</zorder>
+     <zorder>word_1</zorder>
+     <zorder>translate_1</zorder>
+     <zorder>word_6</zorder>
+     <zorder>translate_5</zorder>
+     <zorder>word_7</zorder>
+     <zorder>translate_8</zorder>
+     <zorder>word_8</zorder>
+     <zorder>translate_9</zorder>
+     <zorder>word_9</zorder>
+     <zorder>translate_4</zorder>
+     <zorder>word_2</zorder>
+     <zorder>translate_2</zorder>
+     <zorder>word_4</zorder>
+     <zorder>translate_7</zorder>
+     <zorder>word_5</zorder>
+     <zorder>translate_6</zorder>
+     <zorder>word_10</zorder>
+     <zorder>translate_3</zorder>
+     <zorder>word_3</zorder>
+     <zorder>translate_10</zorder>
+     <zorder>import_card</zorder>
+     <zorder>define_card</zorder>
+     <zorder>new_word</zorder>
+     <zorder>new_translate</zorder>
     </widget>
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="baack.qrc"/>
-  <include location="example.qrc"/>
-  <include location="bg1.qrc"/>
-  <include location="bg.qrc"/>
-  <include location="baack1.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
