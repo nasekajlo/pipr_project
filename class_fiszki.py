@@ -44,10 +44,17 @@ class Card:
 class Round:
     """Functions:
         1. check_result
-        2. """
+        2. choose random words
+        3. writing words in file
+        4. import new word
+        5. export new word
+        5. delete word
+        6. define new word
+        Constructor:
+        It takes cards number and time of test, also the cards list is created"""
     def __init__(self, number_cards, time):
-        """ NOT FINISHED!
-            Конструктор раунда принимает список фишек и время выполнения теста"""
+        """!
+            """
         self._time = time
         self._number_cards = number_cards
         self._cards = []
@@ -70,12 +77,9 @@ class Round:
         return self._cards
     
     def check_result(self, sorted_cards, sorted_translate, time):
-        """Два критерия по оценке теста:
-            1. Время выполнения меньше времени, отведенного на тест
-            2. Слова сопоставлены правильно
-           Если время выполнения меньше, все слова не будут засчитаны
-           Если время соблюдено, то засчитываются правильные сопоставление
-           В итоге возвращается список неправильных слов"""
+        """Two conditions of winning:
+        1. The test time is less tham the predicated time
+        2. All words are done correctly"""
         bad_words = []
         # good_words = []
         if time > self._time:
@@ -88,7 +92,10 @@ class Round:
         return bad_words
 
     def words_for_repeat(self, words, file=database):
-        """Записываем слова, которые были в тесте, в файл для повторения"""
+        """Writing test word to the file.
+            The repeat of the test words are increasing in 4 times.
+            The repeat of not test word are decreasing in 2 times
+            If the repeat of not test word equals 1, nothing to do"""
         all_lines = []
         with open(file, 'r+') as f:
             all_lines = f.readlines()
@@ -118,16 +125,11 @@ class Round:
             f.write("".join(new_words))
         return all_words
 
-        
-
-    def add_new_card(self, word, translate, level):
-        """DELETE AT THE END"""
-        card = Card(word, translate)
-        self.append(card)
 
     def export_card(self, card: Card, file=database):
-        """Експорт принимает фишку, которую нужно экспортировать
-            и файл, в который нужно ее сохранить(файл определен как константа)"""
+        """Define and export new word
+            Check the condtion that the exported word does not exist
+            If it does not exist, write to the file"""
         with open(file, 'r+') as f:
             all_lines = f.readlines()
             f.seek(0)
@@ -144,12 +146,8 @@ class Round:
             f.write("".join(all_lines))
 
     def import_card(self, cards, file=database):
-        """Импорт принимает список разыгрываемых карточек и файл, их которого импортируется фишка.
-            1. Считываются все строки файла
-            2. Выбирается рандомное слово (слово+перевод+уровень)
-            3. Если такого слова нет в данном тесте, оно импортируется
-            4. Если попали в слово, которое уже есть в тесте, выбираем еще иаз рандомное слово
-            5. И так до тех пор пока не найдем неповторяющиеся слово"""
+        """Import takes cards of current test.
+            We choose the random word in the file until we find not tested word"""
         with open(file, 'r') as f:
             all_lines = f.readlines()
             line_count = len(all_lines)
@@ -168,12 +166,7 @@ class Round:
             return cards
 
     def define_new_card(self, word, translate, level: int, cards):
-        """Добавление новой карточки вручную.
-           На вход принимается слово, перевод, уровень сложности и файл для записи
-            1. Считываются все уже существующиеся из файла
-            2. Проверка: если такое слово уже есть, выходим из функции
-            3. Если нет, добавляем новое слово
-           Тут исключено добавление одного и того же слова с разным уровнем сложности."""
+        """Define new card takes word, translate and level, cards"""
         if (word == "" or translate == ""):
             raise ValueError
         for card in cards:
@@ -184,11 +177,10 @@ class Round:
         return cards
 
     def delete_card(self, card: Card, file = database): 
-        """На вход принимаются сама фишка и файл, из которого будет удалять слово
-            1. Считываем все строки
-            2. Очищаем весь файл
-            3. Перезаписываем все строки
-            4. Если встретили ту которую нужно удалить, просто пропускаем"""
+        """Deleting card takes cards. (It is not used in design, because I think 
+        the user have not to change the database, but it is implemented
+        1. takes card to delete
+        2. rewrite all file without this card"""
         all_words = []
         with open(file, 'r+') as f:
             all_lines = f.readlines()
@@ -211,6 +203,8 @@ class Round:
             return new_words
     
     def choose_random_cards(self, file = database):
+        """Sort cards by repeat time
+        From this list choose the words we needed"""
         test_cards = []
         with open(file, 'r+') as f:
             all_words = f.readlines()
